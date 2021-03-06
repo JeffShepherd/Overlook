@@ -2,3 +2,4 @@
 // import './images/turing-logo.png'
 import './css/base.scss';
 import Customer from './Customer';
+import Hotel from './Hotel';
