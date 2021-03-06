@@ -3,6 +3,10 @@ class Hotel {
     this.rooms = roomData;
     this.bookings = bookingsData;
   }
+  getBookingsByID(userID) {
+    return this.bookings.filter(booking => booking.userID === userID)
+  }
+
 }
 
 

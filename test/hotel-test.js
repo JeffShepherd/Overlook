@@ -36,5 +36,14 @@ describe('Hotel', function () {
     expect(hotel2.bookings.length).to.equal(2)
   });
 
+  it('should be able to return room bookings by id', function () {
+    const bookings = hotel.getBookingsByID(1);
+    expect(bookings.length).to.equal(1);
+  })
+
+  it('should be able to return room bookings for a different id', function () {
+    const bookings2 = hotel2.getBookingsByID(1);
+    expect(bookings2).to.deep.equal([]);
+  })
 
 });
