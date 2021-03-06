@@ -38,12 +38,19 @@ describe('Hotel', function () {
 
   it('should be able to return room bookings by id', function () {
     const bookings = hotel.getBookingsByID(1);
-    expect(bookings.length).to.equal(1);
+    expect(bookings.length).to.equal(2);
   })
 
   it('should be able to return room bookings for a different id', function () {
     const bookings2 = hotel2.getBookingsByID(1);
     expect(bookings2).to.deep.equal([]);
   })
+
+  it('should be able to return past room bookings by id', function () {
+    const bookings = hotel.getPastBookings("2021/03/06", 1);
+    expect(bookings.length).to.equal(2);
+    expect(bookings[0].id).to.deep.equal('5fwrgu4i7k55hl6t8')
+  })
+
 
 });
