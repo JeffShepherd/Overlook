@@ -9,16 +9,88 @@ import {
 import Customer from './Customer';
 import Hotel from './Hotel';
 
+
+//query selectors
+const totalSpent = document.querySelector('#totalSpent');
+const viewDescription = document.querySelector('#viewDescription');
+const mainSection = document.querySelector('#mainSection');
+const pastBookings = document.querySelector('#pastBookings');
+const currentBookings = document.querySelector('#currentBookings');
+
+//global variables
 let hotel, currentUser;
 
+
+//main startup function
 function startApplication() {
   Promise.all([getData('rooms'), getData('bookings'), getData('customers/1')]) //3rd request hardcoded for now
     .then(values => {
-      hotel = new Hotel(values[0], values[1])
+      hotel = new Hotel(values[0].rooms, values[1].bookings)
       currentUser = new Customer(values[2])
-      //dom display function kick-off here
+      populateLandingPage()
     })
 }
 
+function populateLandingPage() {
+  displayTotalCost()
+  displayCurrentBookings()
+}
 
+function displayTotalCost() {
+  const cost = hotel.calculateTotalCost(currentUser.id);
+  totalSpent.innerText = `Total spent on rooms: $${cost.toFixed(2)}`;
+}
+
+function displayCurrentBookings() {
+  const today = '2020/01/31'; //update this to be dynamic
+  const bookings = hotel.getCurrentBookings(today, currentUser.id);
+
+  if (!bookings.length) {
+    return viewDescription.innerText = 'You have no upcoming stays with Overlook Hotel. We would be happy to have you!'
+  }
+
+  const currentBookings = bookings.map(booking => {
+    const roomDetails = hotel.getRoomDetails(booking.roomNumber);
+    return `
+    <article class="card">
+      <p>Date of stay: ${booking.date}</p>
+      <p>Room type: ${roomDetails.roomType}</p>
+      <p>Cost per night: ${roomDetails.costPerNight}</p>
+    </article>`
+  });
+
+  mainSection.innerHTML = currentBookings.join('\n');
+  viewDescription.innerText = 'Now viewing: upcoming stays'
+}
+
+function displayPastBookings() {
+  const today = '2020/01/31'; //update this to be dynamic
+  const bookings = hotel.getPastBookings(today, currentUser.id);
+
+  if (!bookings.length) {
+    return viewDescription.innerText = 'You have never stayed at Overlook Hotel before. We would be happy to have you!'
+  }
+
+  const pastBookings = bookings.map(booking => {
+    const roomDetails = hotel.getRoomDetails(booking.roomNumber);
+    return `
+    <article class="card">
+      <p>Date of stay: ${booking.date}</p>
+      <p>Room type: ${roomDetails.roomType}</p>
+      <p>Cost per night: ${roomDetails.costPerNight}</p>
+    </article>`
+  });
+
+  mainSection.innerHTML = pastBookings.join('\n');
+  viewDescription.innerText = 'Now viewing: past bookings'
+}
+
+
+
+//
+//
+//
+//event listeners
 window.addEventListener('load', startApplication)
+pastBookings.addEventListener('click', displayPastBookings);
+currentBookings.addEventListener('click', displayCurrentBookings);

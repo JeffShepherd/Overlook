@@ -67,5 +67,11 @@ describe('Hotel', function () {
     expect(hotel2.calculateTotalCost(9)).to.equal(231.46);
   })
 
+  it('should be able to provide room details by room number', function () {
+    expect(hotel.getRoomDetails(15).roomType).to.equal("single room")
+    expect(hotel.getRoomDetails(15).costPerNight).to.equal(231.46)
+    expect(hotel.getRoomDetails(100)).to.equal(undefined)
+  })
+
 
 });
