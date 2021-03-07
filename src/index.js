@@ -12,7 +12,9 @@ import Hotel from './Hotel';
 
 //query selectors
 const totalSpent = document.querySelector('#totalSpent');
+const viewDescription = document.querySelector('#viewDescription');
 const mainSection = document.querySelector('#mainSection');
+
 
 //global variables
 let hotel, currentUser;
@@ -24,13 +26,13 @@ function startApplication() {
     .then(values => {
       hotel = new Hotel(values[0].rooms, values[1].bookings)
       currentUser = new Customer(values[2])
-      //dom display function kick-off here
       populatePage()
     })
 }
 
 function populatePage() {
   displayTotalCost()
+  displayCurrentBookings()
 }
 
 function displayTotalCost() {
@@ -38,7 +40,27 @@ function displayTotalCost() {
   totalSpent.innerText = `Total spent on rooms: $${cost.toFixed(2)}`;
 }
 
+function displayCurrentBookings() {
+  const today = '2020/01/31'; //update this to be dynamic
+  const bookings = hotel.getCurrentBookings(today, currentUser.id);
 
+  if (!bookings.length) {
+    return viewDescription.innerText = 'You have no upcoming stays with Overlook Hotel. We would be happy to have you!'
+  }
+
+  const currentBookings = bookings.map(booking => {
+    const roomDetails = hotel.getRoomDetails(booking.roomNumber);
+    return `
+    <article class="card">
+      <p>Date of stay: ${booking.date}</p>
+      <p>Room type: ${roomDetails.roomType}</p>
+      <p>Cost per night: ${roomDetails.costPerNight}</p>
+    </article>`
+  });
+
+  mainSection.innerHTML = currentBookings.join('\n');
+  viewDescription.innerText = 'Now viewing: current bookings'
+}
 
 
 
