@@ -9,13 +9,11 @@ class Hotel {
 
   getPastBookings(today, userID, ) {
     const orderedBookings = this.getBookingsByID(userID).sort((a, b) => a.date - b.date);
-
     return orderedBookings.filter(booking => booking.date < today)
   }
 
   getCurrentBookings(today, userID) {
     const orderedBookings = this.getBookingsByID(userID).sort((a, b) => a.date - b.date);
-
     return orderedBookings.filter(booking => booking.date >= today)
   }
 
