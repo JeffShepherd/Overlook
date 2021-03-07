@@ -55,21 +55,21 @@ export const testRoomData = [{
   "numBeds": 1,
   "costPerNight": 397.02
 }, {
-  "number": 7,
+  "number": 15,
   "roomType": "single room",
   "bidet": false,
   "bedSize": "queen",
   "numBeds": 2,
   "costPerNight": 231.46
 }, {
-  "number": 8,
+  "number": 12,
   "roomType": "junior suite",
   "bidet": false,
   "bedSize": "king",
   "numBeds": 1,
   "costPerNight": 261.26
 }, {
-  "number": 9,
+  "number": 14,
   "roomType": "single room",
   "bidet": true,
   "bedSize": "queen",
@@ -110,7 +110,7 @@ export const testBookingData = [{
   "roomServiceCharges": []
 }, {
   "id": "5fwrgu4i7k55hl6t9",
-  "userID": 38,
+  "userID": 1,
   "date": "2020/02/14",
   "roomNumber": 14,
   "roomServiceCharges": []
