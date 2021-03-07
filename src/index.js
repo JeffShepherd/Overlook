@@ -41,8 +41,12 @@ function displayTotalCost() {
   totalSpent.innerText = `Total spent on rooms: $${cost.toFixed(2)}`;
 }
 
+function getDateToday() {
+  return new Date().toISOString().replace(/-/g, "/").split("T")[0];
+}
+
 function displayCurrentBookings() {
-  const today = '2020/01/31'; //update this to be dynamic
+  const today = getDateToday();
   const bookings = hotel.getCurrentBookings(today, currentUser.id);
 
   if (!bookings.length) {
@@ -64,7 +68,7 @@ function displayCurrentBookings() {
 }
 
 function displayPastBookings() {
-  const today = '2020/01/31'; //update this to be dynamic
+  const today = getDateToday();
   const bookings = hotel.getPastBookings(today, currentUser.id);
 
   if (!bookings.length) {
