@@ -6,8 +6,7 @@ const checkIfError = response => {
   }
 }
 
-
-
+//get request (dynamic)
 export const getData = path => fetch(`http://localhost:3001/api/v1/${path}`)
   .then(checkIfError)
   .catch(err => alert(err))
