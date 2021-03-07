@@ -28,6 +28,17 @@ class Hotel {
     }, 0)
   }
 
+  getRoomDetails(roomNumber) {
+    let details = [];
+    this.rooms.forEach(room => {
+      if (room.number === roomNumber) {
+        details.push(room.roomType);
+        details.push(room.costPerNight);
+      }
+    })
+    return details;
+  }
+
 }
 
 export default Hotel;

@@ -39,5 +39,5 @@ function displayTotalCost() {
 }
 
 
-
+//event listeners
 window.addEventListener('load', startApplication)
