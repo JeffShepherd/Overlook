@@ -59,10 +59,35 @@ function displayCurrentBookings() {
   });
 
   mainSection.innerHTML = currentBookings.join('\n');
-  viewDescription.innerText = 'Now viewing: current bookings'
+  viewDescription.innerText = 'Now viewing: upcoming stays'
+}
+
+function displayPastBookings() {
+  const today = '2020/01/31'; //update this to be dynamic
+  const bookings = hotel.getPastBookings(today, currentUser.id);
+
+  if (!bookings.length) {
+    return viewDescription.innerText = 'You have never stayed at Overlook Hotel before. We would be happy to have you!'
+  }
+
+  const pastBookings = bookings.map(booking => {
+    const roomDetails = hotel.getRoomDetails(booking.roomNumber);
+    return `
+    <article class="card">
+      <p>Date of stay: ${booking.date}</p>
+      <p>Room type: ${roomDetails.roomType}</p>
+      <p>Cost per night: ${roomDetails.costPerNight}</p>
+    </article>`
+  });
+
+  mainSection.innerHTML = pastBookings.join('\n');
+  viewDescription.innerText = 'Now viewing: past bookings'
 }
 
 
 
+//
+//
+//
 //event listeners
 window.addEventListener('load', startApplication)
