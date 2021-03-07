@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- font link here -->
+    <title>Overlook Hotel</title>
   </head>
+
   <body>
-    <h1>Webpack Starter Kit</h1>
+
+    <header>
+      <img src="./images/binoculars.svg" alt="binocular icon">
+      <h1>Overlook Hotel</h1>
+
+      <section class="dashboard">
+        <p>Total spent on rooms: $</p>
+        <p>Past Bookings</p>
+        <p>Current Bookings</p>
+      </section>
+    </header>
+
+<!-- start of main section -->
+    <main>
+  <!-- search bar section -->
+      <section class="search-container">
+        <p>Book your next stay:</p>
+        <input type="date">
+        <select name="room-type" id="">
+          <option value="" selected>room type</option>
+          <option value="residential suite">residential suite</option>
+          <option value="suite">suite</option>
+          <option value="junior suite">junior suite</option>
+          <option value="single room">single room</option>
+        </select>
+        <button>Search</button>
+      </section>
+
+      <section class="view-description">
+        <p>You are currently viewing:</p>
+      </section>
+  <!-- card section -->
+      <section class="card-container">
+
+        <div class="card">a</div><!-- mock card (delete once added dynamically) -->
+        <div class="card">a</div><!-- mock card (delete once added dynamically) -->
+        <div class="card">a</div><!-- mock card (delete once added dynamically) -->
+        <div class="card">a</div><!-- mock card (delete once added dynamically) -->
+        <div class="card">a</div><!-- mock card (delete once added dynamically) -->      
+      </section>
+    
 
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+    </main>
+
   </body>
 </html>

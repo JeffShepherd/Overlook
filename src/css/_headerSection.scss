@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 15vh;
+
+  h1 {
+    font-size: 2em;
+    margin: auto;
+  }
+
+  img {
+    margin-left: 1%;
+  }
+
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 1%;
+
+  p {
+    font-size: 1em;
+    margin-top: 5%;
+  }
+}
