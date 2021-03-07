@@ -62,5 +62,10 @@ describe('Hotel', function () {
     expect(bookings3[0].id).to.deep.equal('5fwrgu4i7k55hl6t9')
   })
 
+  it('should be able to calculate the total a specific customer has spent on rooms', function () {
+    expect(hotel.calculateTotalCost(1)).to.equal(461.65);
+    expect(hotel2.calculateTotalCost(9)).to.equal(231.46);
+  })
+
 
 });
