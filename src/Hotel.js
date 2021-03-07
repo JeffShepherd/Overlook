@@ -29,14 +29,7 @@ class Hotel {
   }
 
   getRoomDetails(roomNumber) {
-    let details = [];
-    this.rooms.forEach(room => {
-      if (room.number === roomNumber) {
-        details.push(room.roomType);
-        details.push(room.costPerNight);
-      }
-    })
-    return details;
+    return this.rooms.find(room => room.number === roomNumber)
   }
 
 }

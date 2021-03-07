@@ -12,7 +12,7 @@ import Hotel from './Hotel';
 
 //query selectors
 const totalSpent = document.querySelector('#totalSpent');
-
+const mainSection = document.querySelector('#mainSection');
 
 //global variables
 let hotel, currentUser;
@@ -37,6 +37,9 @@ function displayTotalCost() {
   const cost = hotel.calculateTotalCost(currentUser.id);
   totalSpent.innerText = `Total spent on rooms: $${cost.toFixed(2)}`;
 }
+
+
+
 
 
 //event listeners
