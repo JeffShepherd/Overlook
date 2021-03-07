@@ -16,6 +16,7 @@ const viewDescription = document.querySelector('#viewDescription');
 const mainSection = document.querySelector('#mainSection');
 const pastBookings = document.querySelector('#pastBookings');
 const currentBookings = document.querySelector('#currentBookings');
+const dateInput = document.querySelector('#dateInput');
 
 //global variables
 let hotel, currentUser;
@@ -32,8 +33,14 @@ function startApplication() {
 }
 
 function populateLandingPage() {
-  displayTotalCost()
-  displayCurrentBookings()
+  displayTotalCost();
+  displayCurrentBookings();
+  setMinDate();
+}
+
+function setMinDate() {
+  dateInput.min = getDateToday().replace(/\//g, '-');
+  dateInput.value = getDateToday().replace(/\//g, '-')
 }
 
 function displayTotalCost() {
@@ -50,6 +57,7 @@ function displayCurrentBookings() {
   const bookings = hotel.getCurrentBookings(today, currentUser.id);
 
   if (!bookings.length) {
+    mainSection.innerHTML = '';
     return viewDescription.innerText = 'You have no upcoming stays with Overlook Hotel. We would be happy to have you!'
   }
 
@@ -72,6 +80,7 @@ function displayPastBookings() {
   const bookings = hotel.getPastBookings(today, currentUser.id);
 
   if (!bookings.length) {
+    mainSection.innerHTML = '';
     return viewDescription.innerText = 'You have never stayed at Overlook Hotel before. We would be happy to have you!'
   }
 

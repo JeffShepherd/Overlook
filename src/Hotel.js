@@ -32,6 +32,10 @@ class Hotel {
     return this.rooms.find(room => room.number === roomNumber)
   }
 
+  findAvailableRooms(date) {
+
+  }
+
 }
 
 export default Hotel;
