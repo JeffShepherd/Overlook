@@ -14,7 +14,8 @@ import Hotel from './Hotel';
 const totalSpent = document.querySelector('#totalSpent');
 const viewDescription = document.querySelector('#viewDescription');
 const mainSection = document.querySelector('#mainSection');
-
+const pastBookings = document.querySelector('#pastBookings');
+const currentBookings = document.querySelector('#currentBookings');
 
 //global variables
 let hotel, currentUser;
@@ -26,11 +27,11 @@ function startApplication() {
     .then(values => {
       hotel = new Hotel(values[0].rooms, values[1].bookings)
       currentUser = new Customer(values[2])
-      populatePage()
+      populateLandingPage()
     })
 }
 
-function populatePage() {
+function populateLandingPage() {
   displayTotalCost()
   displayCurrentBookings()
 }
@@ -91,3 +92,5 @@ function displayPastBookings() {
 //
 //event listeners
 window.addEventListener('load', startApplication)
+pastBookings.addEventListener('click', displayPastBookings);
+currentBookings.addEventListener('click', displayCurrentBookings);
