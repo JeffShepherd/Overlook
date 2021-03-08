@@ -43,6 +43,13 @@ class Hotel {
     return this.rooms.filter(room => !bookedRooms.includes(room.number))
   }
 
+  findRoomsWithFilter(date, filterValue) {
+    const availableRooms = this.findAvailableRooms(date);
+
+    return availableRooms.filter(room => room.roomType === filterValue)
+  }
+
+
 }
 
 export default Hotel;

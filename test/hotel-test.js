@@ -79,4 +79,10 @@ describe('Hotel', function () {
     expect(hotel3.findAvailableRooms("2020/04/22")).to.deep.equal([])
   })
 
+  it('should be able to return all rooms available for a given date and filter value', function () {
+    expect(hotel.findRoomsWithFilter("2020/04/22", "single room").length).to.equal(4)
+    expect(hotel.findRoomsWithFilter("2020/04/22", "residential suite").length).to.equal(1)
+    expect(hotel.findRoomsWithFilter("2020/04/22", "junior suite")).to.deep.equal([])
+  })
+
 });
