@@ -1,6 +1,22 @@
 .search-container {
   display: flex;
   justify-content: center;
+  padding: 1.5% 0;
+
+  h2 {
+    margin: auto 0;
+    font-size: 1em;
+  }
+
+  label {
+    margin: auto 0.5% auto 1.5%;
+    font-size: 0.8em;
+  }
+
+  .room-selector {
+    margin-right: 1%;
+  }
+
 }
 
 .view-description {

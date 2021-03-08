@@ -180,6 +180,7 @@ function bookRoom(event) {
     .catch(err => alert(err))
 }
 
+
 function updatePageAfterBooking() {
   displayCurrentBookings();
   viewDescription.innerText = 'Thanks for booking with us! You are now viewing your current reservations.'
