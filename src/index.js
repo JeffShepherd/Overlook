@@ -18,6 +18,7 @@ const pastBookings = document.querySelector('#pastBookings');
 const currentBookings = document.querySelector('#currentBookings');
 const dateInput = document.querySelector('#dateInput');
 const roomSearchButton = document.querySelector('#roomSearchButton');
+const roomTypeSelector = document.querySelector('#roomTypeSelector');
 
 //global variables
 let hotel, currentUser;
@@ -101,7 +102,13 @@ function displayPastBookings() {
 
 
 function findRooms() {
-  const availableRooms = hotel.findAvailableRooms(dateInput.value.replace(/-/g, '/'));
+  let availableRooms;
+
+  if (roomTypeSelector.value === '') {
+    availableRooms = hotel.findAvailableRooms(dateInput.value.replace(/-/g, '/'));
+  } else {
+    availableRooms = hotel.findRoomsWithFilter(dateInput.value.replace(/-/g, '/'), roomTypeSelector.value);
+  }
 
   if (!availableRooms.length) {
     return viewDescription.innerText = 'Our deepest apologies, but no rooms are available for this date. Please adjust your search criteria.';
