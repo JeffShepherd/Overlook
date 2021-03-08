@@ -33,7 +33,14 @@ class Hotel {
   }
 
   findAvailableRooms(date) {
+    const bookedRooms = this.bookings.reduce((rooms, booking) => {
+      if (booking.date === date) {
+        rooms.push(booking.roomNumber);
+      }
+      return rooms;
+    }, [])
 
+    return this.rooms.filter(room => !bookedRooms.includes(room.number))
   }
 
 }
