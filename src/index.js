@@ -17,6 +17,7 @@ const mainSection = document.querySelector('#mainSection');
 const pastBookings = document.querySelector('#pastBookings');
 const currentBookings = document.querySelector('#currentBookings');
 const dateInput = document.querySelector('#dateInput');
+const roomSearchButton = document.querySelector('#roomSearchButton');
 
 //global variables
 let hotel, currentUser;
@@ -99,11 +100,34 @@ function displayPastBookings() {
 }
 
 
+function findRooms() {
+  const availableRooms = hotel.findAvailableRooms(dateInput.value.replace(/-/g, '/'));
+
+  if (!availableRooms.length) {
+    return viewDescription.innerText = 'Our deepest apologies, but no rooms are available for this date. Please adjust your search criteria.';
+  }
+
+  mainSection.innerHTML = '';
+
+  availableRooms.forEach(room => {
+    mainSection.innerHTML += `
+    <article class="card">
+      <p>Room type: ${room.roomType}</p>
+      <p>Number of beds: ${room.numBeds}</p>
+      <p>Bed size: ${room.bedSize}</p>
+      <p>Bidet: ${room.bidet}</p>
+      <p>Cost per night: ${room.costPerNight}</p>
+    </article>`
+  })
+  viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
+}
+
 
 //
 //
 //
 //event listeners
-window.addEventListener('load', startApplication)
+window.addEventListener('load', startApplication);
 pastBookings.addEventListener('click', displayPastBookings);
 currentBookings.addEventListener('click', displayCurrentBookings);
+roomSearchButton.addEventListener('click', findRooms);
