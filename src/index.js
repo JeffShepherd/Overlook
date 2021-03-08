@@ -3,7 +3,8 @@
 import './images/binoculars.svg';
 import './css/base.scss';
 import {
-  getData
+  getData,
+  postNewBooking
 } from './api.js'
 
 import Customer from './Customer';
