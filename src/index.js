@@ -16,6 +16,9 @@ const viewDescription = document.querySelector('#viewDescription');
 const mainSection = document.querySelector('#mainSection');
 const pastBookings = document.querySelector('#pastBookings');
 const currentBookings = document.querySelector('#currentBookings');
+const dateInput = document.querySelector('#dateInput');
+const roomSearchButton = document.querySelector('#roomSearchButton');
+const roomTypeSelector = document.querySelector('#roomTypeSelector');
 
 //global variables
 let hotel, currentUser;
@@ -32,8 +35,15 @@ function startApplication() {
 }
 
 function populateLandingPage() {
-  displayTotalCost()
-  displayCurrentBookings()
+  displayTotalCost();
+  displayCurrentBookings();
+  setMinDate();
+  viewDescription.innerText = 'Thank you for considering Overlook Hotel! Please reach out to an agent if we can assist with anything!'
+}
+
+function setMinDate() {
+  dateInput.min = getDateToday().replace(/\//g, '-');
+  dateInput.value = getDateToday().replace(/\//g, '-')
 }
 
 function displayTotalCost() {
@@ -50,6 +60,7 @@ function displayCurrentBookings() {
   const bookings = hotel.getCurrentBookings(today, currentUser.id);
 
   if (!bookings.length) {
+    mainSection.innerHTML = '';
     return viewDescription.innerText = 'You have no upcoming stays with Overlook Hotel. We would be happy to have you!'
   }
 
@@ -72,6 +83,7 @@ function displayPastBookings() {
   const bookings = hotel.getPastBookings(today, currentUser.id);
 
   if (!bookings.length) {
+    mainSection.innerHTML = '';
     return viewDescription.innerText = 'You have never stayed at Overlook Hotel before. We would be happy to have you!'
   }
 
@@ -90,11 +102,40 @@ function displayPastBookings() {
 }
 
 
+function findRooms() {
+  let availableRooms;
+
+  if (roomTypeSelector.value === '') {
+    availableRooms = hotel.findAvailableRooms(dateInput.value.replace(/-/g, '/'));
+  } else {
+    availableRooms = hotel.findRoomsWithFilter(dateInput.value.replace(/-/g, '/'), roomTypeSelector.value);
+  }
+
+  if (!availableRooms.length) {
+    return viewDescription.innerText = 'Our deepest apologies, but no rooms are available for this date. Please adjust your search criteria.';
+  }
+
+  mainSection.innerHTML = '';
+
+  availableRooms.forEach(room => {
+    mainSection.innerHTML += `
+    <article class="card">
+      <p>Room type: ${room.roomType}</p>
+      <p>Number of beds: ${room.numBeds}</p>
+      <p>Bed size: ${room.bedSize}</p>
+      <p>Bidet: ${room.bidet}</p>
+      <p>Cost per night: ${room.costPerNight}</p>
+    </article>`
+  })
+  viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
+}
+
 
 //
 //
 //
 //event listeners
-window.addEventListener('load', startApplication)
+window.addEventListener('load', startApplication);
 pastBookings.addEventListener('click', displayPastBookings);
 currentBookings.addEventListener('click', displayCurrentBookings);
+roomSearchButton.addEventListener('click', findRooms);

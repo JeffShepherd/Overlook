@@ -9,11 +9,12 @@ import {
 
 describe('Hotel', function () {
 
-  let hotel, hotel2;
+  let hotel, hotel2, hotel3;
 
   beforeEach(function () {
     hotel = new Hotel(testRoomData, testBookingData);
     hotel2 = new Hotel(testRoomData, [testBookingData[0], testBookingData[1]])
+    hotel3 = new Hotel([testRoomData[6]], testBookingData)
   });
 
   it('should be a function', function () {
@@ -73,5 +74,15 @@ describe('Hotel', function () {
     expect(hotel.getRoomDetails(100)).to.equal(undefined)
   })
 
+  it('should be able to return all rooms available for a given date', function () {
+    expect(hotel.findAvailableRooms("2020/04/22").length).to.equal(8)
+    expect(hotel3.findAvailableRooms("2020/04/22")).to.deep.equal([])
+  })
+
+  it('should be able to return all rooms available for a given date and filter value', function () {
+    expect(hotel.findRoomsWithFilter("2020/04/22", "single room").length).to.equal(4)
+    expect(hotel.findRoomsWithFilter("2020/04/22", "residential suite").length).to.equal(1)
+    expect(hotel.findRoomsWithFilter("2020/04/22", "junior suite")).to.deep.equal([])
+  })
 
 });

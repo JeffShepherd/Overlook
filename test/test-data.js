@@ -49,7 +49,7 @@ export const testRoomData = [{
   "costPerNight": 340.17
 }, {
   "number": 6,
-  "roomType": "junior suite",
+  "roomType": "suite",
   "bidet": true,
   "bedSize": "queen",
   "numBeds": 1,
@@ -63,7 +63,7 @@ export const testRoomData = [{
   "costPerNight": 231.46
 }, {
   "number": 12,
-  "roomType": "junior suite",
+  "roomType": "suite",
   "bidet": false,
   "bedSize": "king",
   "numBeds": 1,
