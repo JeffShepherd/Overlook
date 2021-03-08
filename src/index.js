@@ -3,6 +3,7 @@
 import './images/binoculars.svg';
 import './css/base.scss';
 import {
+  checkIfError,
   getData,
   postNewBooking
 } from './api.js'
@@ -161,22 +162,36 @@ function bookRoom(event) {
   const bookingInfo = event.target.closest('article').id.split('.');
   console.log(bookingInfo)
 
+  const postData = {
+    "userID": currentUser.id,
+    "date": bookingInfo[0],
+    "roomNumber": parseInt(bookingInfo[1])
+  }
+  console.log(postData)
 
-
+  postNewBooking(postData)
+    .then(checkIfError)
+    .then(json => {
+      console.log(json.newBooking)
+      hotel.bookings.push(json.newBooking); //push new data to class
+      updatePageAfterBooking(); //dom update
+    })
+    .catch(err => alert(err))
 }
 
-
+function updatePageAfterBooking() {
+  displayCurrentBookings();
+  viewDescription.innerText = 'Thanks for booking with us! You are now viewing your current reservations.'
+  displayTotalCost();
+}
 
 
 
 //login check idea: (currentuser10) -split at t and chck if 1st is matching string and second is number >0 <50
 //idea 2: split by a certain number of word-length characters and then check each
 //
-//
 //event listeners
 window.addEventListener('load', startApplication);
 pastBookings.addEventListener('click', displayPastBookings);
 currentBookings.addEventListener('click', displayCurrentBookings);
 roomSearchButton.addEventListener('click', findRooms);
-
-// mainSection.addEventListener('click', )//dynamic for cards

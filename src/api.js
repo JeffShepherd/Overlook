@@ -1,4 +1,4 @@
-const checkIfError = response => {
+export const checkIfError = response => {
   if (!response.ok) {
     throw new Error('An error has been encountered. Please check back later.');
   } else {
