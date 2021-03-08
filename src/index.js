@@ -1,5 +1,6 @@
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
+const moment = require('moment');
 import './images/binoculars.svg';
 import './css/base.scss';
 import {
@@ -58,7 +59,7 @@ function displayTotalCost() {
 
 
 function getDateToday() {
-  return new Date().toISOString().replace(/-/g, "/").split("T")[0];
+  return moment().format(`YYYY/MM/DD`);
 }
 
 
