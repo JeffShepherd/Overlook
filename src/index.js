@@ -2,6 +2,8 @@
 // import './images/turing-logo.png'
 const moment = require('moment');
 import './images/binoculars.svg';
+import './images/binoculars-yellow.svg';
+import './images/userIcon.svg';
 import './css/base.scss';
 import {
   checkIfError,
@@ -42,7 +44,7 @@ function populateLandingPage() {
   displayTotalCost();
   displayCurrentBookings();
   setMinDate();
-  viewDescription.innerText = 'Thank you for considering Overlook Hotel! Please reach out to an agent if we can assist with anything!';
+  viewDescription.innerText = 'Thank you for considering Overlook Hotel! Now viewing: all upcoming reservations';
 }
 
 
@@ -78,7 +80,7 @@ function displayCurrentBookings() {
     <article class="card">
       <p>Date of stay: ${booking.date}</p>
       <p>Room type: ${roomDetails.roomType}</p>
-      <p>Cost per night: ${roomDetails.costPerNight}</p>
+      <p>Cost per night: $${roomDetails.costPerNight}</p>
     </article>`
   });
 
@@ -102,7 +104,7 @@ function displayPastBookings() {
     <article class="card">
       <p>Date of stay: ${booking.date}</p>
       <p>Room type: ${roomDetails.roomType}</p>
-      <p>Cost per night: ${roomDetails.costPerNight}</p>
+      <p>Cost per night: $${roomDetails.costPerNight}</p>
     </article>`
   });
 
@@ -134,7 +136,7 @@ function findRooms() {
       <p>Number of beds: ${room.numBeds}</p>
       <p>Bed size: ${room.bedSize}</p>
       <p>Bidet: ${room.bidet}</p>
-      <p>Cost per night: ${room.costPerNight}</p>
+      <p>Cost per night: $${room.costPerNight}</p>
       <button class="reserve-button">Reserve Room</button> 
     </article>`
   }) //add id or event listener to button?

@@ -2,16 +2,17 @@ header {
   display: flex;
   justify-content: space-between;
   height: 15vh;
+  min-height: 100px;
 
   h1 {
     font-size: 2em;
     margin: auto;
+    font-size: 3em;
   }
 
-  img {
+  .binoculars {
     margin-left: 1%;
   }
-
 }
 
 .dashboard {
@@ -24,4 +25,5 @@ header {
     font-size: 1em;
     margin-top: 5%;
   }
+
 }
