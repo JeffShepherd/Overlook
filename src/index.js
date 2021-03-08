@@ -38,6 +38,7 @@ function populateLandingPage() {
   displayTotalCost();
   displayCurrentBookings();
   setMinDate();
+  viewDescription.innerText = 'Thank you for considering Overlook Hotel! Please reach out to an agent if we can assist with anything!'
 }
 
 function setMinDate() {
