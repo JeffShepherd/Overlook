@@ -82,7 +82,7 @@ function displayCurrentBookings() {
   });
 
   mainSection.innerHTML = currentBookings.join('\n');
-  viewDescription.innerText = 'Now viewing: upcoming stays'
+  viewDescription.innerText = 'Now viewing: upcoming stays';
 }
 
 
