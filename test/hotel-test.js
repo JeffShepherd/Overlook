@@ -53,7 +53,7 @@ describe('Hotel', function () {
     expect(bookings[0].id).to.deep.equal('5fwrgu4i7k55hl6t8')
   })
 
-  it('should be able to present/future room bookings by id', function () {
+  it('should be able to return present/future room bookings by id', function () {
     const bookings = hotel.getCurrentBookings("2020/02/15", 1);
     expect(bookings).to.deep.equal([]);
     const bookings2 = hotel.getCurrentBookings("2019/03/06", 1);
@@ -66,6 +66,10 @@ describe('Hotel', function () {
   it('should be able to calculate the total a specific customer has spent on rooms', function () {
     expect(hotel.calculateTotalCost(1)).to.equal(461.65);
     expect(hotel2.calculateTotalCost(9)).to.equal(231.46);
+  })
+
+  it('should be able to calculate total cost if same room number has been booked more than once', function () {
+    expect(hotel.calculateTotalCost(4)).to.equal(794.04);
   })
 
   it('should be able to provide room details by room number', function () {

@@ -1,4 +1,4 @@
-const moment = require('moment');
+import moment from 'moment';
 import './images/binoculars-yellow.svg';
 import './css/base.scss';
 import {
@@ -19,20 +19,55 @@ const dateInput = document.querySelector('#dateInput');
 const roomSearchButton = document.querySelector('#roomSearchButton');
 const roomTypeSelector = document.querySelector('#roomTypeSelector');
 const userName = document.querySelector('#userName');
+const loginButton = document.querySelector('#loginButton');
+const username = document.querySelector('#username');
+const password = document.querySelector('#password');
+const loginError = document.querySelector('#loginError');
+const loginPage = document.querySelector('#loginPage');
 
 //global variables
 let hotel, currentUser;
 
+//login validation
+function checkCredentials() {
+  const userName = username.value
+
+  if (password.value !== 'overlook2021' || userName.length < 9) {
+    resetLoginFailure();
+  } else {
+    validateUsername(userName);
+  }
+}
+
+function validateUsername(username) {
+  const customer = username.slice(0, 8);
+  let userID = parseInt(username.slice(8));
+
+  if (customer === 'customer' && username[8] !== '0' && typeof userID === 'number' && userID > 0 && userID < 51) {
+    loginPage.classList.add('hidden');
+    console.log('id before start', userID)
+    startApplication(userID);
+  } else {
+    resetLoginFailure();
+  }
+}
+
+function resetLoginFailure() {
+  username.value = '';
+  password.value = '';
+  loginError.innerText = 'Your username and/or password is incorrect. Please try again.';
+}
+
 //main startup function
-function startApplication() {
-  Promise.all([getData('rooms'), getData('bookings'), getData('customers/1')]) //3rd request hardcoded for now
+function startApplication(id) {
+  Promise.all([getData('rooms'), getData('bookings'), getData(`customers/${id}`)])
     .then(values => {
       hotel = new Hotel(values[0].rooms, values[1].bookings)
       currentUser = new Customer(values[2])
+      console.log('id after instantiation', currentUser.id)
       populateLandingPage()
     })
 }
-
 
 function populateLandingPage() {
   displayTotalCost();
@@ -134,7 +169,7 @@ function findRooms() {
     </article>`
   }) //add id or event listener to button?
 
-  targetCards()
+  targetCards();
 
   viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
 }
@@ -147,7 +182,7 @@ function targetCards() {
 
   buttons.forEach(button => {
     button.addEventListener('click', function (event) {
-      bookRoom(event)
+      bookRoom(event);
     })
   })
 }
@@ -163,13 +198,14 @@ function bookRoom(event) {
     "date": bookingInfo[0],
     "roomNumber": parseInt(bookingInfo[1])
   }
-  console.log(postData)
+  console.log('pre-post object', postData);
 
   postNewBooking(postData)
     .then(checkIfError)
     .then(json => {
-      console.log(json.newBooking)
+      console.log('booking return', json.newBooking)
       hotel.bookings.push(json.newBooking); //push new data to class
+      console.log('hotel bookings', hotel.bookings)
       updatePageAfterBooking(); //dom update
     })
     .catch(err => alert(err))
@@ -183,12 +219,8 @@ function updatePageAfterBooking() {
 }
 
 
-
-//login check idea: (currentuser10) -split at t and chck if 1st is matching string and second is number >0 <50
-//idea 2: split by a certain number of word-length characters and then check each
-//
 //event listeners
-window.addEventListener('load', startApplication);
+loginButton.addEventListener('click', checkCredentials);
 pastBookings.addEventListener('click', displayPastBookings);
 currentBookings.addEventListener('click', displayCurrentBookings);
 roomSearchButton.addEventListener('click', findRooms);
