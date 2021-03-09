@@ -3,13 +3,13 @@ header {
   justify-content: space-between;
   height: 20vh;
   min-height: 120px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid $grey;
 
   h1 {
     font-size: 2em;
     margin: auto;
     font-size: 3em;
-    color: gold;
+    color: $gold;
   }
 
   .binoculars {
@@ -33,13 +33,13 @@ header {
   button {
     border: none;
     background-color: transparent;
-    color: white;
+    color: $white;
     font-size: 100%;
     text-align: left;
     padding: 0;
 
     &:hover {
-      color: gold;
+      color: $gold;
     }
   }
 

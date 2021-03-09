@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 1.5% 0;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid $grey;
 
 
   h2 {
@@ -30,13 +30,13 @@
   }
 
   button {
-    background-color: gold;
+    background-color: $gold;
     border: none;
     border-radius: 3px;
     margin-left: 1%;
 
     &:hover {
-      background-color: white;
+      background-color: $white;
     }
   }
 }
