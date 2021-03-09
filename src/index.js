@@ -1,16 +1,13 @@
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-import './images/binoculars.svg';
+const moment = require('moment');
+import './images/binoculars-yellow.svg';
 import './css/base.scss';
 import {
   checkIfError,
   getData,
   postNewBooking
-} from './api.js'
-
+} from './api.js';
 import Customer from './Customer';
 import Hotel from './Hotel';
-
 
 //query selectors
 const totalSpent = document.querySelector('#totalSpent');
@@ -21,10 +18,10 @@ const currentBookings = document.querySelector('#currentBookings');
 const dateInput = document.querySelector('#dateInput');
 const roomSearchButton = document.querySelector('#roomSearchButton');
 const roomTypeSelector = document.querySelector('#roomTypeSelector');
+const userName = document.querySelector('#userName');
 
 //global variables
 let hotel, currentUser;
-
 
 //main startup function
 function startApplication() {
@@ -41,24 +38,22 @@ function populateLandingPage() {
   displayTotalCost();
   displayCurrentBookings();
   setMinDate();
-  viewDescription.innerText = 'Thank you for considering Overlook Hotel! Please reach out to an agent if we can assist with anything!';
+  userName.innerText = `👤 ${currentUser.name}`;
+  viewDescription.innerText = 'Thank you for considering Overlook Hotel! Now viewing: all upcoming reservations';
 }
 
+function displayTotalCost() {
+  const cost = hotel.calculateTotalCost(currentUser.id);
+  totalSpent.innerText = `Total spent: $${cost.toFixed(2)}`;
+}
 
 function setMinDate() {
   dateInput.min = getDateToday().replace(/\//g, '-');
   dateInput.value = getDateToday().replace(/\//g, '-');
 }
 
-
-function displayTotalCost() {
-  const cost = hotel.calculateTotalCost(currentUser.id);
-  totalSpent.innerText = `Total spent on rooms: $${cost.toFixed(2)}`;
-}
-
-
 function getDateToday() {
-  return new Date().toISOString().replace(/-/g, "/").split("T")[0];
+  return moment().format(`YYYY/MM/DD`);
 }
 
 
@@ -77,12 +72,12 @@ function displayCurrentBookings() {
     <article class="card">
       <p>Date of stay: ${booking.date}</p>
       <p>Room type: ${roomDetails.roomType}</p>
-      <p>Cost per night: ${roomDetails.costPerNight}</p>
+      <p>Cost per night: $${roomDetails.costPerNight}</p>
     </article>`
   });
 
   mainSection.innerHTML = currentBookings.join('\n');
-  viewDescription.innerText = 'Now viewing: upcoming stays'
+  viewDescription.innerText = 'Now viewing: upcoming stays';
 }
 
 
@@ -101,7 +96,7 @@ function displayPastBookings() {
     <article class="card">
       <p>Date of stay: ${booking.date}</p>
       <p>Room type: ${roomDetails.roomType}</p>
-      <p>Cost per night: ${roomDetails.costPerNight}</p>
+      <p>Cost per night: $${roomDetails.costPerNight}</p>
     </article>`
   });
 
@@ -121,6 +116,7 @@ function findRooms() {
   }
 
   if (!availableRooms.length) {
+    mainSection.innerHTML = '';
     return viewDescription.innerText = 'Our deepest apologies, but no rooms are available for this date. Please adjust your search criteria.';
   }
 
@@ -133,7 +129,7 @@ function findRooms() {
       <p>Number of beds: ${room.numBeds}</p>
       <p>Bed size: ${room.bedSize}</p>
       <p>Bidet: ${room.bidet}</p>
-      <p>Cost per night: ${room.costPerNight}</p>
+      <p>Cost per night: $${room.costPerNight}</p>
       <button class="reserve-button">Reserve Room</button> 
     </article>`
   }) //add id or event listener to button?
@@ -178,6 +174,7 @@ function bookRoom(event) {
     })
     .catch(err => alert(err))
 }
+
 
 function updatePageAfterBooking() {
   displayCurrentBookings();

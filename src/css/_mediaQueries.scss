@@ -1,0 +1,61 @@
+//tablet view
+@media screen and (max-width: 1024px) {
+  .card-container {
+    width: 95%;
+  }
+
+  .card {
+    width: 45%;
+
+    p {
+      padding-left: 20%;
+    }
+  }
+}
+
+//mobile view
+@media screen and (max-width: 550px) {
+  .card-container {
+    width: 95%;
+  }
+
+  .card {
+    width: 95%;
+  }
+
+  h1,
+  h2 {
+    display: none;
+  }
+
+  .search-container {
+
+    .room-container {
+      margin-left: 1%;
+    }
+
+    div {
+      flex-direction: column;
+      min-width: 140px;
+
+      input,
+      select {
+        height: 40px;
+        border: none;
+      }
+
+      label {
+        text-align: left;
+        font-size: 1.2em;
+      }
+    }
+
+    button {
+      margin-left: 1%;
+    }
+  }
+
+  body {
+    min-width: 350px;
+  }
+}

@@ -3,20 +3,22 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <!-- font link here -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <title>Overlook Hotel</title>
   </head>
 
   <body>
 
     <header>
-      <img src="./images/binoculars.svg" alt="binocular icon">
+      <img class="binoculars" src="./images/binoculars-yellow.svg" alt="binocular icon">
       <h1>Overlook Hotel</h1>
 
       <section class="dashboard">
+        <p id="userName"></p>
         <p id="totalSpent">Total spent on rooms: $</p>
-        <p id="pastBookings">Past Bookings</p>
-        <p id="currentBookings">Current Bookings</p>
+        <button id="pastBookings">Past Bookings</button>
+        <button id="currentBookings">Current Bookings</button>
       </section>
     </header>
 
@@ -24,20 +26,28 @@
     <main>
   <!-- search bar section -->
       <section class="search-container">
-        <p>Book your next stay:</p>
-        <input id="dateInput" type="date" min="">
-        <select name="room-type" id="roomTypeSelector">
-          <option value="" selected>all room types</option>
-          <option value="residential suite">residential suite</option>
-          <option value="suite">suite</option>
-          <option value="junior suite">junior suite</option>
-          <option value="single room">single room</option>
-        </select>
+        <h2>Book your next stay:</h2>
+
+        <div>
+          <label for="dateInput">Date:</label>
+          <input id="dateInput" type="date" min="">
+        </div>
+
+        <div class="room-container">
+          <label for="roomTypeSelector">Room type:</label>
+          <select class="room-selector" id="roomTypeSelector">
+            <option value="" selected>all room types</option>
+            <option value="residential suite">residential suite</option>
+            <option value="suite">suite</option>
+            <option value="junior suite">junior suite</option>
+            <option value="single room">single room</option>
+          </select>
+        </div>
         <button id="roomSearchButton">Search</button>
       </section>
 
       <section class="view-description">
-        <p id="viewDescription">You are currently viewing:</p>
+        <p id="viewDescription"></p>
       </section>
   <!-- card section -->
       <section class="card-container" id="mainSection">

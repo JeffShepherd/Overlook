@@ -1,9 +1,43 @@
 .search-container {
   display: flex;
   justify-content: center;
+  padding: 1.5% 0;
+  border-bottom: 1px solid grey;
+
+
+  h2 {
+    margin: auto 0;
+    padding-right: 2%;
+    font-size: 1em;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    min-width: 200px;
+
+    label {
+      margin: auto 0;
+      padding-right: 2%;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    .room-selector {
+      margin-right: 1%;
+    }
+
+  }
+
+  button {
+    background-color: gold;
+    border: none;
+    border-radius: 3px;
+    margin-left: 1%;
+  }
 }
 
 .view-description {
   text-align: center;
-  margin-top: 3%;
+  padding-top: 2%;
 }

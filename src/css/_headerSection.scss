@@ -1,27 +1,46 @@
 header {
   display: flex;
   justify-content: space-between;
-  height: 15vh;
+  height: 20vh;
+  min-height: 120px;
+  border-bottom: 1px solid grey;
 
   h1 {
     font-size: 2em;
     margin: auto;
+    font-size: 3em;
+    color: gold;
   }
 
-  img {
-    margin-left: 1%;
+  .binoculars {
+    margin: 1% 0 3% 1%;
+    height: 100px;
   }
-
 }
 
 .dashboard {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   margin-right: 1%;
 
-  p {
+  p,
+  button {
     font-size: 1em;
-    margin-top: 5%;
+    margin-top: 4%;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 100%;
+    text-align: left;
+    padding: 0;
+  }
+
+  #userName {
+    padding-bottom: 15%;
+    text-align: right;
   }
 }
