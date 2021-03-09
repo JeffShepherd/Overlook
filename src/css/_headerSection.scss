@@ -1,15 +1,14 @@
 header {
-  display: flex;
-  justify-content: space-between;
+  @include display(flex, space-between);
   height: 20vh;
   min-height: 120px;
-  border-bottom: 1px solid grey;
+  border-bottom: $grey-border;
 
   h1 {
     font-size: 2em;
     margin: auto;
     font-size: 3em;
-    color: gold;
+    color: $gold;
   }
 
   .binoculars {
@@ -19,9 +18,8 @@ header {
 }
 
 .dashboard {
-  display: flex;
+  @include display(flex, flex-start);
   flex-direction: column;
-  justify-content: flex-start;
   margin-right: 1%;
 
   p,
@@ -33,10 +31,14 @@ header {
   button {
     border: none;
     background-color: transparent;
-    color: white;
+    color: $white;
     font-size: 100%;
     text-align: left;
     padding: 0;
+
+    &:hover {
+      color: $gold;
+    }
   }
 
   #userName {
