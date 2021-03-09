@@ -1,0 +1,56 @@
+//tablet view
+@media screen and (max-width: 1024px) {
+  .card-container {
+    width: 95%;
+  }
+
+  .card {
+    width: 45%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 500px) {
+  .card-container {
+    width: 95%;
+  }
+
+  .card {
+    width: 95%;
+  }
+
+  h1,
+  h2 {
+    display: none;
+  }
+
+  .search-container {
+    div {
+      flex-direction: column;
+      min-width: 145px;
+
+      input,
+      select {
+        height: 40px;
+      }
+
+      label {
+        text-align: left;
+        font-size: 1.2em;
+      }
+    }
+
+    button {
+      margin-left: 3%;
+    }
+  }
+
+}

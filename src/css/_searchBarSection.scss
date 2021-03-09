@@ -7,24 +7,38 @@
 
   h2 {
     margin: auto 0;
+    padding-right: 2%;
     font-size: 1em;
   }
 
-  label {
-    margin: auto 0.5% auto 1.5%;
-    font-size: 0.8em;
+  div {
+    display: flex;
+    flex-direction: row;
+    min-width: 200px;
+
+    label {
+      margin: auto 0;
+      padding-right: 2%;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    .room-selector {
+      margin-right: 1%;
+    }
+
   }
 
-  .room-selector {
-    margin-right: 1%;
-  }
+
+
+
 
   button {
     background-color: gold;
     border: none;
     border-radius: 3px;
+    margin-left: 1%;
   }
-
 }
 
 .view-description {

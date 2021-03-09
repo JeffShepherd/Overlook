@@ -1,9 +1,7 @@
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 const moment = require('moment');
-import './images/binoculars.svg';
 import './images/binoculars-yellow.svg';
-import './images/userIcon.svg';
 import './css/base.scss';
 import {
   checkIfError,
@@ -45,7 +43,7 @@ function populateLandingPage() {
   displayTotalCost();
   displayCurrentBookings();
   setMinDate();
-  displayName();
+  userName.innerText = `👤 ${currentUser.name}`;
   viewDescription.innerText = 'Thank you for considering Overlook Hotel! Now viewing: all upcoming reservations';
 }
 
@@ -58,12 +56,6 @@ function setMinDate() {
   dateInput.min = getDateToday().replace(/\//g, '-');
   dateInput.value = getDateToday().replace(/\//g, '-');
 }
-
-
-function displayName() {
-  userName.innerText = `👤 ${currentUser.name}`
-}
-
 
 function getDateToday() {
   return moment().format(`YYYY/MM/DD`);
