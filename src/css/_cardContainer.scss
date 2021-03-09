@@ -1,7 +1,7 @@
 .card-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
+  flex-wrap: wrap;
   width: 90%;
   margin: 1% auto 0 auto;
   height: 100%;
@@ -9,8 +9,8 @@
 
 .card {
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
+  flex-direction: column;
   width: 35%;
   margin: 1% 0 0.5% 0;
   height: 20vh;
@@ -29,5 +29,9 @@
     background-color: gold;
     border-radius: 3px;
     border: none;
+
+    &:hover {
+      background-color: white;
+    }
   }
 }
