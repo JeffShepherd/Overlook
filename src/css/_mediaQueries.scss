@@ -6,19 +6,15 @@
 
   .card {
     width: 45%;
+
+    p {
+      padding-left: 20%;
+    }
   }
 }
 
 
-
-
-
-
-
-
-
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .card-container {
     width: 95%;
   }
@@ -33,13 +29,19 @@
   }
 
   .search-container {
+
+    .room-container {
+      margin-left: 1%;
+    }
+
     div {
       flex-direction: column;
-      min-width: 145px;
+      min-width: 140px;
 
       input,
       select {
         height: 40px;
+        border: none;
       }
 
       label {
@@ -49,8 +51,11 @@
     }
 
     button {
-      margin-left: 3%;
+      margin-left: 1%;
     }
   }
 
+  body {
+    min-width: 350px;
+  }
 }

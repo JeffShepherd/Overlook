@@ -1,5 +1,3 @@
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
 const moment = require('moment');
 import './images/binoculars-yellow.svg';
 import './css/base.scss';
@@ -7,11 +5,9 @@ import {
   checkIfError,
   getData,
   postNewBooking
-} from './api.js'
-
+} from './api.js';
 import Customer from './Customer';
 import Hotel from './Hotel';
-
 
 //query selectors
 const totalSpent = document.querySelector('#totalSpent');
@@ -26,7 +22,6 @@ const userName = document.querySelector('#userName');
 
 //global variables
 let hotel, currentUser;
-
 
 //main startup function
 function startApplication() {
@@ -121,6 +116,7 @@ function findRooms() {
   }
 
   if (!availableRooms.length) {
+    mainSection.innerHTML = '';
     return viewDescription.innerText = 'Our deepest apologies, but no rooms are available for this date. Please adjust your search criteria.';
   }
 
