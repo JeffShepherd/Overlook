@@ -11,6 +11,13 @@
       padding-left: 20%;
     }
   }
+
+  .login-page {
+    button {
+      width: 30%;
+    }
+  }
+
 }
 
 //mobile view
@@ -57,5 +64,21 @@
 
   body {
     min-width: 350px;
+  }
+
+  .login-page {
+    button {
+      width: 50%;
+    }
+
+    h3 {
+      padding-bottom: 20%;
+    }
+
+    div {
+      div {
+        padding-bottom: 4%;
+      }
+    }
   }
 }
