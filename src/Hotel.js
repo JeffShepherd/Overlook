@@ -45,8 +45,6 @@ class Hotel {
 
     return availableRooms.filter(room => room.roomType === filterValue)
   }
-
-
 }
 
 export default Hotel;

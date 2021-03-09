@@ -116,6 +116,7 @@ function displayPastBookings() {
   viewDescription.innerText = 'Now viewing: past bookings'
 }
 
+
 function displayBookingCards(bookings) {
   mainSection.innerHTML = '';
 
@@ -161,7 +162,6 @@ function findRooms() {
   })
 
   targetCards();
-
   viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
 }
 
@@ -194,16 +194,16 @@ function bookRoom(event) {
     .then(checkIfError)
     .then(json => {
       console.log('booking return', json.newBooking)
-      hotel.bookings.push(json.newBooking); //push new data to class
+      hotel.bookings.push(json.newBooking);
       console.log('hotel bookings', hotel.bookings)
-      updatePageAfterBooking(); //dom update
+      updatePageAfterBooking();
     })
     .catch(err => alert(err))
 }
 
 function updatePageAfterBooking() {
   displayCurrentBookings();
-  viewDescription.innerText = 'Thanks for booking with us! You are now viewing your current reservations.'
+  viewDescription.innerText = 'Thanks for booking with us! You are now viewing your current reservations.';
   displayTotalCost();
 }
 

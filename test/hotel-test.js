@@ -38,13 +38,11 @@ describe('Hotel', function () {
   });
 
   it('should be able to return room bookings by id', function () {
-    const bookings = hotel.getBookingsByID(1);
-    expect(bookings.length).to.equal(2);
+    expect(hotel.getBookingsByID(1).length).to.equal(2);
   })
 
   it('should be able to return room bookings for a different id', function () {
-    const bookings = hotel2.getBookingsByID(1);
-    expect(bookings).to.deep.equal([]);
+    expect(hotel2.getBookingsByID(1)).to.deep.equal([]);
   })
 
   it('should be able to return past room bookings by id', function () {
@@ -66,6 +64,7 @@ describe('Hotel', function () {
   it('should be able to calculate the total a specific customer has spent on rooms', function () {
     expect(hotel.calculateTotalCost(1)).to.equal(461.65);
     expect(hotel2.calculateTotalCost(9)).to.equal(231.46);
+    expect(hotel.calculateTotalCost(50)).to.equal(0);
   })
 
   it('should be able to calculate total cost if same room number has been booked more than once', function () {
