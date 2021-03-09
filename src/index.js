@@ -43,8 +43,9 @@ function validateUsername(username) {
   const customer = username.slice(0, 8);
   let userID = parseInt(username.slice(8));
 
-  if (customer === 'customer' && typeof userID === 'number' && userID > 0 && userID < 51) {
+  if (customer === 'customer' && username[8] !== '0' && typeof userID === 'number' && userID > 0 && userID < 51) {
     loginPage.classList.add('hidden');
+    console.log('id before start', userID)
     startApplication(userID);
   } else {
     resetLoginFailure();
@@ -63,6 +64,7 @@ function startApplication(id) {
     .then(values => {
       hotel = new Hotel(values[0].rooms, values[1].bookings)
       currentUser = new Customer(values[2])
+      console.log('id after instantiation', currentUser.id)
       populateLandingPage()
     })
 }
@@ -167,7 +169,7 @@ function findRooms() {
     </article>`
   }) //add id or event listener to button?
 
-  targetCards()
+  targetCards();
 
   viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
 }
@@ -180,7 +182,7 @@ function targetCards() {
 
   buttons.forEach(button => {
     button.addEventListener('click', function (event) {
-      bookRoom(event)
+      bookRoom(event);
     })
   })
 }
@@ -196,13 +198,14 @@ function bookRoom(event) {
     "date": bookingInfo[0],
     "roomNumber": parseInt(bookingInfo[1])
   }
-  console.log(postData)
+  console.log('pre-post object', postData);
 
   postNewBooking(postData)
     .then(checkIfError)
     .then(json => {
-      console.log(json.newBooking)
+      console.log('booking return', json.newBooking)
       hotel.bookings.push(json.newBooking); //push new data to class
+      console.log('hotel bookings', hotel.bookings)
       updatePageAfterBooking(); //dom update
     })
     .catch(err => alert(err))

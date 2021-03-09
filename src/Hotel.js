@@ -21,9 +21,8 @@ class Hotel {
     const roomNums = this.getBookingsByID(userID).map(booking => booking.roomNumber);
 
     return this.rooms.reduce((totalCost, room) => {
-      if (roomNums.includes(room.number)) {
-        totalCost += room.costPerNight;
-      }
+      let roomCounter = roomNums.filter(num => num === room.number);
+      totalCost += roomCounter.length * room.costPerNight;
       return totalCost;
     }, 0)
   }
