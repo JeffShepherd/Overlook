@@ -1,6 +1,5 @@
 header {
-  display: flex;
-  justify-content: space-between;
+  @include display(flex, space-between);
   height: 20vh;
   min-height: 120px;
   border-bottom: $grey-border;
@@ -19,8 +18,7 @@ header {
 }
 
 .dashboard {
-  display: flex;
-  justify-content: flex-start;
+  @include display(flex, flex-start);
   flex-direction: column;
   margin-right: 1%;
 

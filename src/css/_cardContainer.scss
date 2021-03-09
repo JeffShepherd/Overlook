@@ -1,6 +1,5 @@
 .card-container {
-  display: flex;
-  justify-content: space-around;
+  @include display(flex, space-around);
   flex-wrap: wrap;
   width: 90%;
   margin: 1% auto 0 auto;
@@ -8,8 +7,7 @@
 }
 
 .card {
-  display: flex;
-  justify-content: space-around;
+  @include display(flex, space-around);
   flex-direction: column;
   width: 35%;
   margin: 1% 0 0.5% 0;

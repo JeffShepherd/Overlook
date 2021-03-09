@@ -1,9 +1,7 @@
 .search-container {
-  display: flex;
-  justify-content: center;
+  @include display(flex, center);
   padding: 1.5% 0;
   border-bottom: $grey-border;
-
 
   h2 {
     margin: auto 0;
@@ -26,7 +24,6 @@
     .room-selector {
       margin-right: 1%;
     }
-
   }
 
   button {
