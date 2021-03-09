@@ -24,6 +24,7 @@ const currentBookings = document.querySelector('#currentBookings');
 const dateInput = document.querySelector('#dateInput');
 const roomSearchButton = document.querySelector('#roomSearchButton');
 const roomTypeSelector = document.querySelector('#roomTypeSelector');
+const userName = document.querySelector('#userName');
 
 //global variables
 let hotel, currentUser;
@@ -44,9 +45,14 @@ function populateLandingPage() {
   displayTotalCost();
   displayCurrentBookings();
   setMinDate();
+  displayName();
   viewDescription.innerText = 'Thank you for considering Overlook Hotel! Now viewing: all upcoming reservations';
 }
 
+function displayTotalCost() {
+  const cost = hotel.calculateTotalCost(currentUser.id);
+  totalSpent.innerText = `Total spent: $${cost.toFixed(2)}`;
+}
 
 function setMinDate() {
   dateInput.min = getDateToday().replace(/\//g, '-');
@@ -54,9 +60,8 @@ function setMinDate() {
 }
 
 
-function displayTotalCost() {
-  const cost = hotel.calculateTotalCost(currentUser.id);
-  totalSpent.innerText = `Total spent: $${cost.toFixed(2)}`;
+function displayName() {
+  userName.innerText = `👤 ${currentUser.name}`
 }
 
 
