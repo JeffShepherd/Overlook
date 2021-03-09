@@ -4,17 +4,15 @@ class Hotel {
     this.bookings = bookingsData;
   }
   getBookingsByID(userID) {
-    return this.bookings.filter(booking => booking.userID === userID)
+    return this.bookings.filter(booking => booking.userID === userID);
   }
 
   getPastBookings(today, userID) {
-    const orderedBookings = this.getBookingsByID(userID).sort((a, b) => a.date - b.date);
-    return orderedBookings.filter(booking => booking.date < today)
+    return this.getBookingsByID(userID).filter(booking => booking.date < today);
   }
 
   getCurrentBookings(today, userID) {
-    const orderedBookings = this.getBookingsByID(userID).sort((a, b) => a.date - b.date);
-    return orderedBookings.filter(booking => booking.date >= today)
+    return this.getBookingsByID(userID).filter(booking => booking.date >= today);
   }
 
   calculateTotalCost(userID) {
@@ -47,8 +45,6 @@ class Hotel {
 
     return availableRooms.filter(room => room.roomType === filterValue)
   }
-
-
 }
 
 export default Hotel;

@@ -45,7 +45,6 @@ function validateUsername(username) {
 
   if (customer === 'customer' && username[8] !== '0' && typeof userID === 'number' && userID > 0 && userID < 51) {
     loginPage.classList.add('hidden');
-    console.log('id before start', userID)
     startApplication(userID);
   } else {
     resetLoginFailure();
@@ -64,7 +63,6 @@ function startApplication(id) {
     .then(values => {
       hotel = new Hotel(values[0].rooms, values[1].bookings)
       currentUser = new Customer(values[2])
-      console.log('id after instantiation', currentUser.id)
       populateLandingPage()
     })
 }
@@ -101,20 +99,9 @@ function displayCurrentBookings() {
     return viewDescription.innerText = 'You have no upcoming stays with Overlook Hotel. We would be happy to have you!'
   }
 
-  const currentBookings = bookings.map(booking => {
-    const roomDetails = hotel.getRoomDetails(booking.roomNumber);
-    return `
-    <article class="card">
-      <p>Date of stay: ${booking.date}</p>
-      <p>Room type: ${roomDetails.roomType}</p>
-      <p>Cost per night: $${roomDetails.costPerNight}</p>
-    </article>`
-  });
-
-  mainSection.innerHTML = currentBookings.join('\n');
+  displayBookingCards(bookings);
   viewDescription.innerText = 'Now viewing: upcoming stays';
 }
-
 
 function displayPastBookings() {
   const today = getDateToday();
@@ -125,18 +112,23 @@ function displayPastBookings() {
     return viewDescription.innerText = 'You have never stayed at Overlook Hotel before. We would be happy to have you!'
   }
 
-  const pastBookings = bookings.map(booking => {
+  displayBookingCards(bookings);
+  viewDescription.innerText = 'Now viewing: past bookings'
+}
+
+
+function displayBookingCards(bookings) {
+  mainSection.innerHTML = '';
+
+  bookings.forEach(booking => {
     const roomDetails = hotel.getRoomDetails(booking.roomNumber);
-    return `
+    mainSection.innerHTML += `
     <article class="card">
       <p>Date of stay: ${booking.date}</p>
       <p>Room type: ${roomDetails.roomType}</p>
       <p>Cost per night: $${roomDetails.costPerNight}</p>
     </article>`
   });
-
-  mainSection.innerHTML = pastBookings.join('\n');
-  viewDescription.innerText = 'Now viewing: past bookings'
 }
 
 
@@ -167,13 +159,11 @@ function findRooms() {
       <p>Cost per night: $${room.costPerNight}</p>
       <button class="reserve-button">Reserve Room</button> 
     </article>`
-  }) //add id or event listener to button?
+  })
 
   targetCards();
-
   viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
 }
-
 
 
 //target cards
@@ -204,20 +194,18 @@ function bookRoom(event) {
     .then(checkIfError)
     .then(json => {
       console.log('booking return', json.newBooking)
-      hotel.bookings.push(json.newBooking); //push new data to class
+      hotel.bookings.push(json.newBooking);
       console.log('hotel bookings', hotel.bookings)
-      updatePageAfterBooking(); //dom update
+      updatePageAfterBooking();
     })
     .catch(err => alert(err))
 }
 
-
 function updatePageAfterBooking() {
   displayCurrentBookings();
-  viewDescription.innerText = 'Thanks for booking with us! You are now viewing your current reservations.'
+  viewDescription.innerText = 'Thanks for booking with us! You are now viewing your current reservations.';
   displayTotalCost();
 }
-
 
 //event listeners
 loginButton.addEventListener('click', checkCredentials);
