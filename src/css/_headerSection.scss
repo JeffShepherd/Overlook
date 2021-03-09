@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   height: 20vh;
   min-height: 120px;
-  border-bottom: 1px solid $grey;
+  border-bottom: $grey-border;
 
   h1 {
     font-size: 2em;
