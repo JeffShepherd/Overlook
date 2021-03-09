@@ -28,10 +28,10 @@ const loginPage = document.querySelector('#loginPage');
 //global variables
 let hotel, currentUser;
 
-
 //login validation
 function checkCredentials() {
   const userName = username.value
+
   if (password.value !== 'overlook2021' || userName.length < 9) {
     resetLoginFailure();
   } else {
@@ -41,7 +41,8 @@ function checkCredentials() {
 
 function validateUsername(username) {
   const customer = username.slice(0, 8);
-  let userID = parseInt(username.slice(8))
+  let userID = parseInt(username.slice(8));
+
   if (customer === 'customer' && typeof userID === 'number' && userID > 0 && userID < 51) {
     loginPage.classList.add('hidden');
     startApplication(userID);
@@ -65,7 +66,6 @@ function startApplication(id) {
       populateLandingPage()
     })
 }
-
 
 function populateLandingPage() {
   displayTotalCost();

@@ -7,13 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <title>Overlook Hotel</title>
   </head>
-
   <body>
-
     <header>
       <img class="binoculars" src="./images/binoculars-yellow.svg" alt="binocular icon">
       <h1>Overlook Hotel</h1>
-
       <section class="dashboard">
         <p id="userName"></p>
         <p id="totalSpent">Total spent on rooms: $</p>
@@ -21,18 +18,15 @@
         <button id="currentBookings">Current Bookings</button>
       </section>
     </header>
-
 <!-- start of main section -->
     <main>
   <!-- search bar section -->
       <section class="search-container">
         <h2>Book your next stay:</h2>
-
         <div>
           <label for="dateInput">Date:</label>
           <input id="dateInput" type="date" min="">
         </div>
-
         <div class="room-container">
           <label for="roomTypeSelector">Room type:</label>
           <select class="room-selector" id="roomTypeSelector">
@@ -45,40 +39,29 @@
         </div>
         <button id="roomSearchButton">Search</button>
       </section>
-
       <section class="view-description">
         <p id="viewDescription"></p>
       </section>
   <!-- card section -->
       <section class="card-container" id="mainSection">
 
-
       </section>
-    
-
-
     </main>
   <!-- login page -->
     <section id="loginPage" class="login-page">
       <h3>Overlook Hotel</h3>
-      
       <div>
         <div>
           <label for="username">username:</label>
           <input id="username" type="text" placeholder="enter username">
         </div>
-
         <div>
           <label for="password">password:</label>
           <input id="password" type="text" placeholder="enter password">
         </div>
       </div>
-
       <p id="loginError"></p>
-
       <button id="loginButton">Log in and join us!</button>
-
     </section>
-
   </body>
 </html>
