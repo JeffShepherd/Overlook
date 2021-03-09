@@ -56,7 +56,7 @@ function setMinDate() {
 
 function displayTotalCost() {
   const cost = hotel.calculateTotalCost(currentUser.id);
-  totalSpent.innerText = `Total spent on rooms: $${cost.toFixed(2)}`;
+  totalSpent.innerText = `Total spent: $${cost.toFixed(2)}`;
 }
 
 
