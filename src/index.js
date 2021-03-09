@@ -1,4 +1,4 @@
-const moment = require('moment');
+import moment from 'moment';
 import './images/binoculars-yellow.svg';
 import './css/base.scss';
 import {
@@ -55,7 +55,6 @@ function resetLoginFailure() {
   password.value = '';
   loginError.innerText = 'Your username and/or password is incorrect. Please try again.';
 }
-
 
 //main startup function
 function startApplication(id) {
@@ -217,10 +216,6 @@ function updatePageAfterBooking() {
 }
 
 
-
-//login check idea: (currentuser10) -split at t and chck if 1st is matching string and second is number >0 <50
-//idea 2: split by a certain number of word-length characters and then check each
-//
 //event listeners
 loginButton.addEventListener('click', checkCredentials);
 pastBookings.addEventListener('click', displayPastBookings);
