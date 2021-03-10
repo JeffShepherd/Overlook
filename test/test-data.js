@@ -77,7 +77,6 @@ export const testRoomData = [{
   "costPerNight": 200.39
 }]
 
-
 export const testBookingData = [{
   "id": "5fwrgu4i7k55hl6sz",
   "userID": 9,
