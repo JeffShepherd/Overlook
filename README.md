@@ -13,13 +13,13 @@ Learning goals and objects are as follows:
 
 
 ## Desktop view of application
-![screenshot](./assets/gpsammich.png)
+![screenshot](./src/images/desktop-view.png)
 
 ## Login page of application
-![screenshot](./assets/gpsammich.png)
+![screenshot](./src/images/login-page.png)
 
 ## Mobile view of application
-![screenshot](./assets/gpsammich.png)
+![screenshot](./src/images/mobile-view.png)
 
 
 ## Set Up (server and application must be running simultaneously)
