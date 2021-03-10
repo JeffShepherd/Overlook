@@ -9,7 +9,6 @@ import {
 import Customer from './Customer';
 import Hotel from './Hotel';
 
-//query selectors
 const totalSpent = document.querySelector('#totalSpent');
 const viewDescription = document.querySelector('#viewDescription');
 const mainSection = document.querySelector('#mainSection');
@@ -25,10 +24,8 @@ const password = document.querySelector('#password');
 const loginError = document.querySelector('#loginError');
 const loginPage = document.querySelector('#loginPage');
 
-//global variables
 let hotel, currentUser;
 
-//login validation
 function checkCredentials() {
   const userName = username.value
 
@@ -57,7 +54,6 @@ function resetLoginFailure() {
   loginError.innerText = 'Your username and/or password is incorrect. Please try again.';
 }
 
-//main startup function
 function startApplication(id) {
   Promise.all([getData('rooms'), getData('bookings'), getData(`customers/${id}`)])
     .then(values => {
@@ -89,7 +85,6 @@ function getDateToday() {
   return moment().format(`YYYY/MM/DD`);
 }
 
-
 function displayCurrentBookings() {
   const today = getDateToday();
   const bookings = hotel.getCurrentBookings(today, currentUser.id);
@@ -116,7 +111,6 @@ function displayPastBookings() {
   viewDescription.innerText = 'Now viewing: past bookings'
 }
 
-
 function displayBookingCards(bookings) {
   mainSection.innerHTML = '';
 
@@ -130,7 +124,6 @@ function displayBookingCards(bookings) {
     </article>`
   });
 }
-
 
 function findRooms() {
   let availableRooms;
@@ -165,8 +158,6 @@ function findRooms() {
   viewDescription.innerText = 'Now viewing: available rooms for your search criteria';
 }
 
-
-//target cards
 function targetCards() {
   var buttons = document.querySelectorAll('.reserve-button');
 
@@ -177,25 +168,19 @@ function targetCards() {
   })
 }
 
-//post room 
 function bookRoom(event) {
-  console.log(event.target.closest('article'))
   const bookingInfo = event.target.closest('article').id.split('.');
-  console.log(bookingInfo)
 
   const postData = {
     "userID": currentUser.id,
     "date": bookingInfo[0],
     "roomNumber": parseInt(bookingInfo[1])
   }
-  console.log('pre-post object', postData);
 
   postNewBooking(postData)
     .then(checkIfError)
     .then(json => {
-      console.log('booking return', json.newBooking)
       hotel.bookings.push(json.newBooking);
-      console.log('hotel bookings', hotel.bookings)
       updatePageAfterBooking();
     })
     .catch(err => alert(err))
@@ -207,7 +192,6 @@ function updatePageAfterBooking() {
   displayTotalCost();
 }
 
-//event listeners
 loginButton.addEventListener('click', checkCredentials);
 pastBookings.addEventListener('click', displayPastBookings);
 currentBookings.addEventListener('click', displayCurrentBookings);
