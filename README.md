@@ -26,7 +26,7 @@ Learning goals and objects are as follows:
 
 ### Overlook API Server
 
-Clone down this repo: [FitLit API](https://github.com/turingschool-examples/overlook-api)
+Clone down this repo: [Overlook API](https://github.com/turingschool-examples/overlook-api)
 
 cd into directory and run:
 
