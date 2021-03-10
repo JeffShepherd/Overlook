@@ -1,10 +1,10 @@
 # Overlook
 
-Overlook is the final solo Mod-2 project in the [Turing School of Software and Design](https://turing.io/). This application is intended to be a user dashboard for viewing, and booking, reservations at a ficitonal hotel. After logging in, a user is able to view their past and future reservations, as well as search for rooms by date and room type. 
+Overlook is the final solo Mod-2 project in the [Turing School of Software and Design](https://turing.io/). This application is intended to be a user dashboard for viewing, and booking, reservations at a fictional hotel. After logging in, a user is able to view their past and future reservations, as well as search for rooms by date and room type. 
 
 [Original Project Specifications](https://frontend.turing.io/projects/overlook.html)
 
-Learning goals and objects are as follows:
+Learning goals and objectives are as follows:
 
 - Use OOP to drive the design of the application and the code
 - Work with an API to send and receive data
